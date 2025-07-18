@@ -2,7 +2,7 @@ export default function Login() {
   return (
     <>
       <div className="login-container">
-        <h1 className="text-gradient">ECHOES</h1>
+        <h1 className="text-title">ECHOES</h1>
         <h2>Thoughts that gently resonate</h2>
         <p>Create a personal library of neatly organized and searchable notes and ideas.</p>
         <div className="full-line"></div>
