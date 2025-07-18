@@ -28,7 +28,11 @@ export default function Login() {
         </div>
         <div className="full-line"></div>
         <footer>
-            <a target="_blank" href=""></a>
+            <a target="_blank" href="https://github.com/peter-burza/echoes">
+              <img alt="pfp" src="https://avatars.githubusercontent.com/u/18643421?v=4" />
+              <h6>@peter-burza</h6>
+              <i className="fa-brands fa-github"></i>
+            </a>
         </footer>
       </div>
     </>
