@@ -6,7 +6,7 @@ export default function Login() {
         <h2>Thoughts that gently resonate</h2>
         <p>Create a personal library of neatly organized and searchable notes and ideas.</p>
         <div className="full-line"></div>
-        <h6>Sign in</h6>
+        <h3>Sign in</h3>
         <div>
             <p>Email</p>
             <input type="text" placeholder="Enter your email adress" />
@@ -16,7 +16,8 @@ export default function Login() {
             <input type="password" placeholder="*******" />
         </div>
         <button className="submit-btn">
-            <h6>Submit</h6>
+            <h3>Submit</h3>
+            <h3 className="arrow">-&gt;</h3>
         </button>
         <div className="secondary-btns-container">
             <button className="card-button-secondary">

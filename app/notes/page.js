@@ -1,7 +1,19 @@
+import Editor from "@/components/Editor";
+import MDX from "@/components/MDX";
+import SideNav from "@/components/SideNav";
+
 export default function NotesPage() {
+    const isViewer = false;
+
     return (
-        <div>
-            Notes Page
-        </div>
+        <main id="notes">
+            <SideNav />
+            {!isViewer && (
+                <Editor isViewer={isViewer} />
+            )}
+            {isViewer && (
+                <MDX isViewer={isViewer} />
+            )}
+        </main>
     )
 }

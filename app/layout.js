@@ -1,5 +1,5 @@
-import "./globals.css";
 import "./fanta.css";
+import "./globals.css";
 import Head from "./head";
 
 export const metadata = {

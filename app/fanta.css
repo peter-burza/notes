@@ -139,6 +139,7 @@ body {
 
 
 /* Typography */
+h1,
 h2,
 h3,
 h4,
@@ -155,10 +156,10 @@ button {
     line-height: 2.25rem;
 }
 
-/* h1 {
+h1 {
     font-size: 1.5rem;
     line-height: 2rem;
-} */
+}
 
 .special-shadow {
     text-shadow: -1px -1px 4px #0022ffbf, 2px 2px 10px #0022ffbf, 0 0 20px #0022ffbf;
@@ -455,19 +456,19 @@ button {
     padding: 0.25rem 1.25rem;
     border: 1.5px solid var(--border-secondary);
     border-radius: var(--border-radius-small);
-    box-shadow: 2px 2px 0 0 var(--border-secondary);
+    /* box-shadow: 2px 2px 0 0 var(--border-secondary); */
     transition-duration: 200ms;
 }
 
-button:hover {
+/* button:hover {
     box-shadow: 0 0 0 0 var(--border-secondary);
     transform: translate(2px, 2px);
-}
+} */
 
-button[disabled]:hover {
+/* button[disabled]:hover {
     box-shadow: 2px 2px 0 0 var(--border-secondary);
     transform: translate(0, 0);
-}
+} */
 
 button:disabled,
 button[disabled] {
@@ -683,10 +684,10 @@ details[open] summary {
         line-height: 2.5rem;
     }
 
-    /* h1 {
+    h1 {
         font-size: 1.875rem;
         line-height: 2.25rem;
-    } */
+    }
 
     h2 {
         font-size: 1.5rem;
