@@ -1,19 +1,23 @@
-import TopNav from "./TopNav"
+import Markdown from "markdown-to-jsx";
+import TopNav from "./TopNav";
 
 export default function MDX(props) {
-    const md = `
-        # This is a header 1
-        ## This is a header 2
+  const { text } = props
+    const md = `# this is a header 1
+## this is a header 2
 
-        hello world
-
-        [click me](https://www.google.com)
+hello world
+[click me](https://www.google.com)
     `
-    
-    return (
-        <section className="mdx-container">
-            <TopNav {...props} />
-        </section>
-    )
 
+  return (
+    <section className="mdx-container">
+      <TopNav {...props} />
+      <article>
+        <Markdown>
+            {text}
+        </Markdown>
+      </article>
+    </section>
+  );
 }
