@@ -28,7 +28,7 @@ export default function SideNav(props) {
       <h1 className="text-title">ECHOES</h1>
       <h6>Thoughts that gently resonate</h6>
       <div className="full-line"></div>
-      <button>
+      <button className="new-note-btn">
         <h5>New note</h5>
         <i className="fa-solid fa-plus"></i>
       </button>
@@ -50,7 +50,7 @@ export default function SideNav(props) {
         )}
       </div>
       <div className="full-line"></div>
-      <button>
+      <button className="logout-btn">
         <h6>Logout</h6>
         <i className="fa-solid fa-arrow-right-from-bracket"></i>
       </button>

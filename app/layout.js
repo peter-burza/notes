@@ -1,4 +1,4 @@
-import "./fanta.css";
+// import "./fanta.css";
 import "./globals.css";
 import Head from "./head";
 

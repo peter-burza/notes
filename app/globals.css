@@ -51,6 +51,7 @@ button {
 h1 {
   font-size: 4rem;
   line-height: 4.5rem;
+  width: fit-content;
 }
 
 h2 {
@@ -61,7 +62,6 @@ h2 {
 h3 {
   font-size: 1.5rem;
   line-height: 1.5rem;
-  padding-top: 0.2rem;
 }
 
 h5,
@@ -171,6 +171,7 @@ button {
   border-radius: var(--border-radius-small);
   font-weight: 500;
   transition-duration: 200ms;
+  padding: 0.25rem 1rem
 }
 
 .submit-btn {
@@ -179,6 +180,12 @@ button {
   width: 100%;
   max-width: unset;
   padding: 0.5rem;
+}
+
+.submit-btn *,
+.new-note-btn *,
+.logout-btn * {
+  padding-top: 0.2rem;
 }
 
 .submit-btn h3:first-of-type {
@@ -301,12 +308,12 @@ footer a i {
   display: flex;
   gap: 1rem;
   height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: fixed;
   top: 0;
   max-width: 65%;
   background: var(--background-primary);
-  z-index: 10;;
+  z-index: 10;
 }
 
 .hidden-nav {
