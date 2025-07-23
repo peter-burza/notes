@@ -188,6 +188,35 @@ button {
   padding-top: 0.2rem;
 }
 
+.new-note-btn i,
+.logout-btn i {
+  padding-top: 0.3rem;
+}
+
+.new-note-btn i {
+  transition-duration: 500ms;
+}
+
+.new-note-btn:hover i {
+  transform: rotate(90deg);
+}
+
+
+.logout-btn i {
+  transition-duration: 700ms;
+}
+
+.logout-btn:hover i {
+  transform: rotate(360deg);
+}
+
+.submit-btn:disabled,
+.submit-btn[disabled] {
+    /* border: 1.5px solid var(--border-secondary); */
+    cursor: initial;
+    opacity: 0.55;
+}
+
 .submit-btn h3:first-of-type {
   transform: translateX(15px);
   transition-duration: 200ms;
@@ -198,6 +227,10 @@ button {
   transition-duration: 200ms;
 }
 
+.submit-btn[disabled]:hover h3:first-of-type {
+  transform: translateX(15px);
+}
+
 .arrow {
   opacity: 0;
   transform: translateX(-5px);
@@ -206,6 +239,11 @@ button {
 
 .submit-btn:hover .arrow {
   opacity: 1;
+  transform: translateX(10);
+}
+
+.submit-btn[disabled]:hover .arrow {
+  opacity: 0;
   transform: translateX(10);
 }
 
@@ -324,7 +362,7 @@ footer a i {
   width: 100%;
   max-width: unset;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
   gap: 1rem;
 }

@@ -463,19 +463,19 @@ button {
 /* button:hover {
     box-shadow: 0 0 0 0 var(--border-secondary);
     transform: translate(2px, 2px);
-} */
+}
 
-/* button[disabled]:hover {
+button[disabled]:hover {
     box-shadow: 2px 2px 0 0 var(--border-secondary);
     transform: translate(0, 0);
 } */
 
-button:disabled,
+/* button:disabled,
 button[disabled] {
     border: 1.5px solid var(--border-secondary);
     cursor: initial;
     opacity: 0.55;
-}
+} */
 
 label {
     display: block;
