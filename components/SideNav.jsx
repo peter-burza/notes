@@ -1,27 +1,68 @@
+import { useAuth } from "@/context/AuthContext";
+import { db } from "@/firebase";
+import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useRef } from "react";
 
 export default function SideNav(props) {
-  const notes = ["hello sdgfffffffffffffffffffffffffffffffffffffffffffffffffffffff", "world", "hello", "world", "hello", "world", "hello", "world", "hello", "world", "hello", "world", "hello", "world", "hello", "world"];
-  const {showNav, setShowNav} = props
+  const notes = [
+    "hello sdgfffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "world",
+    "hello",
+    "world",
+    "hello",
+    "world",
+    "hello",
+    "world",
+    "hello",
+    "world",
+    "hello",
+    "world",
+    "hello",
+    "world",
+    "hello",
+    "world",
+  ];
+  const { showNav, setShowNav, noteIds, setNoteIds } = props;
+  const { logout, currentUser } = useAuth();
 
-  const ref = useRef()
+  const ref = useRef();
 
   useEffect(() => {
     // This is the code block that gets executed when our ref changes, (so in this case it's when the reft is assigned)
     // console.log(ref)
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
-        setShowNav(false)
+        setShowNav(false);
       }
     }
 
-    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
       // cleanup - unbind the event listener on clean up (so when we close the menu, it will remove the event listener and when we open menu again, it will create new one, but the old one will be gone, and we don't end up with a duplicate...)
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
 
-  }, [ref])
+  useEffect(() => {
+    if (!currentUser) return
+
+
+    async function fetchIndexes() { // this fetches the ids of all our documents
+      try {
+        const notesRef = collection(db, 'users', currentUser.uid, 'notes')
+        const snapshot = await getDocs(notesRef)
+        const notesIndexes = snapshot.docs.map((doc) => {
+          return doc.id
+        })
+        setNoteIds(notesIndexes)
+      } catch (error) {
+        console.log(error.message)
+      } finally {
+
+      }
+    }
+    fetchIndexes()
+  }, [])
 
   return (
     <section ref={ref} className={"nav " + (showNav ? "" : "hidden-nav")}>
@@ -36,7 +77,7 @@ export default function SideNav(props) {
         {notes.length == 0 ? (
           <p>You have 0 notes.</p>
         ) : (
-          notes.map((note, idx) => {
+          noteIds.map((note, idx) => {
             return (
               <button key={idx} className="card-button-secondary list-btn">
                 <p>{note}</p>
@@ -50,7 +91,7 @@ export default function SideNav(props) {
         )}
       </div>
       <div className="full-line"></div>
-      <button className="logout-btn">
+      <button onClick={logout} className="logout-btn">
         <h6>Logout</h6>
         <i className="fa-solid fa-arrow-right-from-bracket"></i>
       </button>

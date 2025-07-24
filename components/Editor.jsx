@@ -13,7 +13,7 @@ export default function Editor(props) {
     return (
         <section className="notes-container">
             <TopNav {...props} />
-            <textarea value={text} onChange={(e) => {setText(e.target.value)}} placeholder={motto} />
+            <textarea value={text} onChange={setText} placeholder={motto} />
         </section>
     )
 
