@@ -1,31 +1,34 @@
 import { useAuth } from "@/context/AuthContext";
 import { db } from "@/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 
 export default function SideNav(props) {
-  const notes = [
-    "hello sdgfffffffffffffffffffffffffffffffffffffffffffffffffffffff",
-    "world",
-    "hello",
-    "world",
-    "hello",
-    "world",
-    "hello",
-    "world",
-    "hello",
-    "world",
-    "hello",
-    "world",
-    "hello",
-    "world",
-    "hello",
-    "world",
-  ];
-  const { showNav, setShowNav, noteIds, setNoteIds } = props;
+  const { showNav, setShowNav, noteIds, setNoteIds, handleCreateNote, setIsViewer, noteId } = props;
   const { logout, currentUser } = useAuth();
 
   const ref = useRef();
+  const router = useRouter()
+
+  async function deleteNote(noteIdx) {
+    try {
+      const noteRef = doc(db, 'users', currentUser.uid, 'notes', noteIdx)
+      await deleteDoc(noteRef)
+
+      setNoteIds((curr) => {
+        return curr.filter(idx => idx !== noteIdx)
+      })
+
+      if (noteIdx == noteId) {
+        handleCreateNote()
+      }
+    } catch (error) {
+      console.log(error.message)
+    } finally {
+
+    }
+  }
 
   useEffect(() => {
     // This is the code block that gets executed when our ref changes, (so in this case it's when the reft is assigned)
@@ -69,20 +72,29 @@ export default function SideNav(props) {
       <h1 className="text-title">ECHOES</h1>
       <h6>Thoughts that gently resonate</h6>
       <div className="full-line"></div>
-      <button className="new-note-btn">
+      <button onClick={handleCreateNote} className="new-note-btn">
         <h5>New note</h5>
         <i className="fa-solid fa-plus"></i>
       </button>
       <div className="notes-list">
-        {notes.length == 0 ? (
+        {noteIds.length == 0 ? (
           <p>You have 0 notes.</p>
         ) : (
           noteIds.map((note, idx) => {
+            const [n, d] = note.split('__')
+            const date = (new Date(parseInt(d))).toString()
             return (
-              <button key={idx} className="card-button-secondary list-btn">
-                <p>{note}</p>
-                <small>DATETIME</small>
-                <div className="delete-btn">
+              <button onClick={() => {
+                router.push('/notes?id=' + note)
+                setIsViewer(true)
+              }} key={idx} className="card-button-secondary list-btn">
+                <p>{n}</p>
+                <small>{date.split(' ').slice(1, 4).join(' ')}</small>
+                <div onClick={(e) => {
+                    e.stopPropagation()
+                    deleteNote(note)
+                  }
+                } className="delete-btn">
                   <i className="fa-solid fa-trash-can"></i>
                 </div>
               </button>

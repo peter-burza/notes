@@ -4,8 +4,9 @@ import MDX from "@/components/MDX";
 import SideNav from "@/components/SideNav";
 import { useAuth } from "@/context/AuthContext";
 import { db } from "@/firebase";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
-import { useState } from "react";
+import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function NotesPage() {
   const [isViewer, setIsViewer] = useState(true);
@@ -14,10 +15,13 @@ export default function NotesPage() {
   const [note, setNote] = useState({
     content: ''
   })
+  const [isLoading, setIsLoading] = useState(false)
   const [noteIds, setNoteIds] = useState([])
   const [savingNote, setSavingNote] = useState(false)
 
   const { currentUser, isLoadingUser } = useAuth();
+
+  const searchParams = useSearchParams()
 
   function handleToggleViewer() {
     setIsViewer(!isViewer);
@@ -27,6 +31,8 @@ export default function NotesPage() {
     setNote({
       content: ''
     })
+    setIsViewer(false)
+    window.history.replaceState(null, '', '/notes') // this just replace the additional data from URL after '/' by '/notes'
   }
 
   function handleEditNote(e) {
@@ -46,13 +52,15 @@ export default function NotesPage() {
         }, { merge: true })
       } else {
         // that means - It's a brand new note and will only contain the content field, so we can basically save a new note to firebase db
-        const newId = note.content.slice(0, 15) + '__' + Date.now()
+        const newId = note.content.replaceAll('#', '').slice(0, 15) + '__' + Date.now()
         const notesRef = doc(db, 'users', currentUser.uid, 'notes', newId)
         const notes = await setDoc(notesRef, {
           content: note.content,
           createdAt: serverTimestamp()
         })
+        setNoteIds(curr => [...curr, newId])
         setNote({ ...note, id: newId})
+        window.history.pushState(null, '', `?id=${newId}`) // this will push a data into URL after what is already there (in this case '/notes')
       }
     } catch (error) {
       console.log(error.message)
@@ -60,6 +68,31 @@ export default function NotesPage() {
       setSavingNote(false)
     }
   }
+
+  useEffect(() => {
+    // locally cache in a global context like the onewe already have. you perhaps just need an extra useState
+    const value = searchParams.get('id')
+
+    if(!value || !currentUser) return
+
+    async function fetchNote() {
+      if (isLoading) return
+      try {
+        setIsLoading(true)
+        const noteRef = doc(db, 'users', currentUser.uid, 'notes', value)
+        const snapshot = await getDoc(noteRef)
+        const docData = snapshot.exists() ? { id: snapshot.id, ...snapshot.data() } : null
+        if (docData) {
+          setNote({ ...docData })
+        }
+      } catch (error) {
+        console.log(error.message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    fetchNote()
+  }, [currentUser, searchParams])
 
   // function handleToggleMenu() {
   //   setShowNav(!showNav)
@@ -76,7 +109,14 @@ export default function NotesPage() {
 
   return (
     <main id="notes">
-      <SideNav showNav={showNav} setShowNav={setShowNav} noteIds={noteIds} setNoteIds={setNoteIds} />
+      <SideNav 
+      showNav={showNav} 
+      setShowNav={setShowNav} 
+      noteIds={noteIds} 
+      setNoteIds={setNoteIds} 
+      handleCreateNote={handleCreateNote}
+      setIsViewer={setIsViewer}
+      noteId={note.id} />
       {!isViewer && (
         <Editor
           isViewer={isViewer}

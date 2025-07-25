@@ -14,12 +14,12 @@ export default function TopNav(props) {
                 <button onClick={handleToggleViewer} className="card-button-secondary">
                     {isViewer ? 
                         <>
-                        <h3>Viewer</h3>
-                            <i className="fa-solid fa-check-double"></i>
-                        </> : 
-                        <>
                             <h3>Editor</h3>
                             <i className="fa-solid fa-pencil"></i>
+                        </> : 
+                        <>
+                            <h3>Viewer</h3>
+                            <i className="fa-solid fa-check-double"></i>
                         </> 
                     }                     
                 </button>

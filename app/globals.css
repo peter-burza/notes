@@ -188,10 +188,10 @@ button {
   padding-top: 0.2rem;
 }
 
-.new-note-btn i,
+/* .new-note-btn i,
 .logout-btn i {
-  padding-top: 0.3rem;
-}
+  padding-top: 0.2rem;
+} */
 
 .new-note-btn i {
   transition-duration: 500ms;
