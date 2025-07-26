@@ -33,12 +33,12 @@ export default function AuthProvider(props) {
     return signOut(auth);
   }
 
-  function forgotPassword(email) {
+  // send password reset email
+  function sendPassResetEmail(email) {
     return sendPasswordResetEmail(auth, email)
   }
 
   // reset password or email
-  // send password reset email
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -70,6 +70,7 @@ export default function AuthProvider(props) {
     signup,
     login,
     logout,
+    sendPassResetEmail
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
