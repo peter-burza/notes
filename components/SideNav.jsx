@@ -69,7 +69,7 @@ export default function SideNav(props) {
 
   return (
     <section ref={ref} className={"nav " + (showNav ? "" : "hidden-nav")}>
-      <h1 className="text-title">ECHOES</h1>
+      <h1 className="text-gradient">ECHOES</h1>
       <h6>Thoughts that gently resonate</h6>
       <div className="full-line"></div>
       <button onClick={handleCreateNote} className="new-note-btn">

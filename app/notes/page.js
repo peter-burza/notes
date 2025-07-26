@@ -99,7 +99,7 @@ export default function NotesPage() {
   // }
 
   if (isLoadingUser) {
-    return <h6 className="text-title">Loading...</h6>;
+    return <h6 className="text-gradient">Loading...</h6>;
   }
 
   if (!currentUser) {

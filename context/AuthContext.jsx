@@ -3,6 +3,7 @@ import { auth } from "@/firebase";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -30,6 +31,10 @@ export default function AuthProvider(props) {
   function logout() {
     setCurrentUser(null);
     return signOut(auth);
+  }
+
+  function forgotPassword(email) {
+    return sendPasswordResetEmail(auth, email)
   }
 
   // reset password or email

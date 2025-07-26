@@ -1,6 +1,7 @@
 :root {
   --background-primary: #030615;
   --background-secondary: rgb(23 37 84);
+  --background-tertiary: #111227;
   --background-muted: #1a1e32;
 
   --color-primary: rgb(219 234 254);
@@ -37,6 +38,7 @@ body {
   line-height: 1.6rem;
 }
 
+h1,
 h2,
 h3,
 h4,
@@ -49,31 +51,35 @@ button {
 }
 
 h1 {
-  font-size: 4rem;
-  line-height: 4.5rem;
-  width: fit-content;
+  font-size: 3rem;
+  line-height: 3rem;
 }
 
 h2 {
-  font-size: 2rem;
-  line-height: 2.3rem;
+  font-size: 1.75rem;
+  line-height: 2rem;
 }
 
 h3 {
-  font-size: 1.5rem;
-  line-height: 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.25rem;
 }
 
 h5,
 h6 {
-  font-size: 1.2rem;
-  line-height: 1.25rem;
+  font-size: 1rem;
+  line-height: 1.1rem;
 }
 
 p {
   width: -moz-fit-content;
   width: fit-content;
   display: block;
+  font-size: 0.8rem;
+}
+
+small {
+  font-size: 0.7rem;
 }
 
 a {
@@ -125,7 +131,7 @@ a {
   padding: 0.75rem;
 }
 
-.text-title {
+.text-gradient {
   font-family: "Charm", sant-serif;
   font-weight: 200;
   color: #7bb4ff;
@@ -431,6 +437,15 @@ footer a i {
   border: none;
   resize: none;
   background: none;
+  color: var(--color-primary);
+  padding: 0.75rem;
+  transition-duration: 200ms;
+}
+
+.notes-container textarea:focus {
+  /* border: solid 1px red !important; */
+  outline: none;
+  background: var(--background-tertiary)
 }
 
 article > div {

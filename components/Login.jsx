@@ -10,7 +10,7 @@ export default function Login() {
   const [isRegister, setIsRegister] = useState(false)
   const [isAuthenticating, setIsAuthenticating] = useState(false)
 
-  const { login, signup } = useAuth()
+  const { login, signup, forgotPassword } = useAuth()
   const router = useRouter()
 
   const cantAuth = ! email.includes('@') || password.length < 6
@@ -43,7 +43,7 @@ export default function Login() {
   return (
     <>
       <div className="login-container">
-        <h1 className="text-title">ECHOES</h1>
+        <h1 className="text-gradient">ECHOES</h1>
         <h2>Thoughts that gently resonate</h2>
         <p>Create a personal library of neatly organized and searchable notes and ideas.</p>
         <div className="full-line"></div>
@@ -66,7 +66,7 @@ export default function Login() {
             }} className="card-button-secondary">
                 <small>{isRegister ? 'Sign in' : 'Sign up'}</small>
             </button>
-            <button className="card-button-secondary">
+            <button onClick={forgotPassword} className="card-button-secondary">
                 <small>Forgot password?</small>
             </button>
         </div>

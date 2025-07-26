@@ -1,4 +1,3 @@
-import "./fanta.css";
 import AuthProvider from "@/context/AuthContext";
 import "./globals.css";
 import Head from "./head";
