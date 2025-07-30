@@ -90,7 +90,7 @@ export default function Login() {
         </Modal>
       )}
       <div className="login-container">
-        <h1 className="text-gradient">ECHOES</h1>
+        <h1 className="text-gradient title-name">ECHOES</h1>
         <h2>Thoughts that gently resonate</h2>
         <p>
           Create a personal library of neatly organized and searchable notes and

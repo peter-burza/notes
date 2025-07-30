@@ -1,5 +1,5 @@
 export default function TopNav(props) {
-    const { isViewer, handleToggleViewer, setShowNav, handleSaveNote, savingNote } = props
+    const { isViewer, handleToggleViewer, setShowNav, handleSaveNote, savingNote, handleShowMDSyntax } = props
 
     return (
         <>
@@ -22,6 +22,10 @@ export default function TopNav(props) {
                             <i className="fa-solid fa-check-double"></i>
                         </> 
                     }                     
+                </button>
+                <button className="card-button-secondary" onClick={handleShowMDSyntax}>
+                    <h3>Markdown</h3>
+                    <i class="fa-regular fa-lightbulb"></i>
                 </button>
             </div>
             <div className="full-line"></div>
