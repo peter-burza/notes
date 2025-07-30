@@ -177,7 +177,7 @@ button {
   border-radius: var(--border-radius-small);
   font-weight: 500;
   transition-duration: 200ms;
-  padding: 0.25rem 1rem
+  padding: 0.25rem 1rem;
 }
 
 .submit-btn {
@@ -207,7 +207,6 @@ button {
   transform: rotate(90deg);
 }
 
-
 .logout-btn i {
   transition-duration: 700ms;
 }
@@ -216,25 +215,18 @@ button {
   transform: rotate(360deg);
 }
 
-.submit-btn:disabled,
 .submit-btn[disabled] {
-    /* border: 1.5px solid var(--border-secondary); */
-    cursor: initial;
-    opacity: 0.55;
+  cursor: initial;
+  opacity: 0.55;
 }
 
 .submit-btn h3:first-of-type {
   transform: translateX(15px);
-  transition-duration: 200ms;
+  transition: transform 200ms ease;
 }
 
-.submit-btn:hover h3:first-of-type {
+.submit-btn:not([disabled]):hover h3:first-of-type {
   transform: translateX(0px);
-  transition-duration: 200ms;
-}
-
-.submit-btn[disabled]:hover h3:first-of-type {
-  transform: translateX(15px);
 }
 
 .arrow {
@@ -243,14 +235,9 @@ button {
   transition: opacity 300ms ease, transform 300ms ease;
 }
 
-.submit-btn:hover .arrow {
+.submit-btn:not([disabled]):hover .arrow {
   opacity: 1;
-  transform: translateX(10);
-}
-
-.submit-btn[disabled]:hover .arrow {
-  opacity: 0;
-  transform: translateX(10);
+  transform: translateX(10px) !important;
 }
 
 .card-button-secondary {
@@ -382,7 +369,7 @@ footer a i {
   flex: 1;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto
+  margin: 0 auto;
 }
 .nav,
 .notes-container,
@@ -401,7 +388,7 @@ footer a i {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem ;
+  gap: 1rem;
 }
 
 .nav {
@@ -481,7 +468,8 @@ footer a i {
   color: #ff4e7a;
 }
 
-.notes-container, .mdx-container {
+.notes-container,
+.mdx-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -489,7 +477,7 @@ footer a i {
 }
 
 .notes-container textarea {
-  flex:1;
+  flex: 1;
   max-height: unset;
   max-width: unset;
   border: none;
@@ -503,7 +491,7 @@ footer a i {
 .notes-container textarea:focus {
   /* border: solid 1px red !important; */
   outline: none;
-  background: var(--background-tertiary)
+  background: var(--background-tertiary);
 }
 
 article > div {
