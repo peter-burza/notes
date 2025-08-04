@@ -25,7 +25,7 @@ export default function TopNav(props) {
                 </button>
                 <button className="card-button-secondary" onClick={handleShowMDSyntax}>
                     <h3>Markdown</h3>
-                    <i class="fa-regular fa-lightbulb"></i>
+                    <i className="fa-regular fa-lightbulb"></i>
                 </button>
             </div>
             <div className="full-line"></div>

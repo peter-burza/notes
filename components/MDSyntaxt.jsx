@@ -211,9 +211,9 @@ export default function MDSyntax(props) {
                   <p>- First item</p>
                 </td>
                 <td>
-                  <p>
+                  {/* <p> */}
                     <Markdown>{"- First item"}</Markdown>
-                  </p>
+                  {/* </p> */}
                 </td>
               </tr>
               <tr>
@@ -221,9 +221,9 @@ export default function MDSyntax(props) {
                   <p>* Second item</p>
                 </td>
                 <td>
-                  <p>
+                  {/* <p> */}
                     <Markdown>{"* Second item"}</Markdown>
-                  </p>
+                  {/* </p> */}
                 </td>
               </tr>
             </tbody>

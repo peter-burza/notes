@@ -8,6 +8,7 @@
   --color-link: #60a5fa;
   --color-link-transparent: rgba(37, 99, 235, 0.2);
   --color-link-background: #003a81c7;
+  --color-red: #ff4e7a;
 
   --gradient-start: #0084ff;
   --gradient-end: #00fffb;
@@ -464,7 +465,7 @@ footer a i {
 }
 
 .list-btn:hover .delete-btn:hover {
-  color: #ff4e7a;
+  color: var(--color-red);
 }
 
 .notes-container,
@@ -501,6 +502,7 @@ article > div {
 }
 
 .markdown-container {
+  position: inherit;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -535,10 +537,15 @@ table tbody tr td {
   padding: 0.4rem 1rem;
 }
 
-.close-button {
+.close-button {  
   position: sticky;
+  top: 1rem;
   margin-left: auto;
   padding: 0.25rem 0.4rem;
+}
+
+.close-button:hover {
+  color: var(--color-red)
 }
 
 /* UTILITY */
